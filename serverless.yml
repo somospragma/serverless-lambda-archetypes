@@ -1,0 +1,25 @@
+service: archetype-serverless-lambda-nodejs # NOTE: update this with your service name
+#app: your-app-name
+#tenant: your-tenant-name
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  environment:
+    hostQueue: amqp://localhost
+# role: arn:aws:iam:::
+#  environment:
+#    REGION: ${self:custom.myEnvironment.REGION.${self:custom.myStage}}
+
+#plugins for test in localhost
+plugins:
+  - serverless-offline
+
+functions:
+  lambda:
+    handler: src/main/lambda/function.lambdaFuntion
+    events:
+      - http:
+          path: api/v1.0
+          method: GET
+          cors: '*'

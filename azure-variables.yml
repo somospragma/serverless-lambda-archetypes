@@ -1,0 +1,11 @@
+variables:
+  ${{ if contains( variables['Build.SourceBranchName'], 'develop' ) }}:
+    POOL_NAME: $(POOL_NAME_DEV)
+    SourceBranchName: 'develop'
+    FUNCTION_NAME: 'datalake-agreements-trade-api'
+    ENVIRONMENT: "--environment Variables={ATHENA_BUCKET=dl-output-athena-dev,DATABASE=dl_agreements}"
+  ${{ if contains( variables['Build.SourceBranchName'], 'master' ) }}: 
+    POOL_NAME: $(POOL_NAME_PDN)
+    SourceBranchName: 'master'
+    FUNCTION_NAME: 'dtl-lbd-fn-agreements_trade_api-pdn'
+  RUNTIME: 'python3.9'

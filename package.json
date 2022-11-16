@@ -1,0 +1,21 @@
+{
+  "name": "archetype-serverless-lambda-nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha src/test/lambda/test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.506.0",
+    "chai": "^4.2.0",
+    "familia-audit-plugin-nodejs": "^1.0.0",
+    "mocha": "^6.2.0"
+  },
+  "devDependencies": {
+    "serverless-offline": "^5.10.1"
+  }
+}

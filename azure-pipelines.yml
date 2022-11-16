@@ -1,0 +1,32 @@
+name: $(Build.DefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
+
+trigger:
+  branches:
+    include:
+      - develop
+      - master
+  paths:
+    exclude:
+      - readme.md
+      - azure-pipelines.yml
+      - azure-variables.yml
+
+variables:
+  - group: AWS
+  - template: azure-variables.yml
+
+pool:
+  name: $(POOL_NAME)
+
+resources:
+  repositories:
+  - repository: Templates
+    type: git
+    name: datalake-pipeline-templates
+    ref: master
+
+stages:
+- template: deployLambda.yml@Templates
+  parameters:
+    layersDev: ['dl-pandas_3']
+    layersPdn: ['dtl-lbd-ly-pandas_3-pdn']
