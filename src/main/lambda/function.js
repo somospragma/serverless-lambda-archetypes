@@ -1,14 +1,12 @@
 'use strict';
-const auditPlugin = require('familia-audit-plugin-nodejs');
-
 
 module.exports.lambdaFuntion = async (event) => {
   try {
     let message = {
       description: "Message"
     };
-    let NameQueue = "hello";
-    auditPlugin.sendMessage(message, NameQueue, null, null);
+
+    let nameQueue = "hello";
 
     return returMapping(200, 200, "succes", "ok", null, null)
   } catch (error) {
